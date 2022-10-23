@@ -63,7 +63,7 @@ export class EditUserComponent implements OnInit {
         this.existingAppUser = appUser;
         this.toast.success('Successfully saved user settings', 'Success');
       },
-      (erorr) => this.toast.error('There was an error saving user settings', 'Error')
+      () => this.toast.error('There was an error saving user settings', 'Error')
     );
   }
 

@@ -26,6 +26,10 @@ export class UserService {
     return this.http.get<AppUser>(`${this.baseUrl}/app-users/${userId}`);
   }
 
+  createUser(appUser: AppUser) {
+    return this.http.post<AppUser>(`${this.baseUrl}/app-users`, appUser);
+  }
+
   updateUser(appUser: AppUser): Observable<AppUser> {
     const userId = appUser.id;
     return this.http.put<AppUser>(`${this.baseUrl}/app-users/${userId}`, appUser);

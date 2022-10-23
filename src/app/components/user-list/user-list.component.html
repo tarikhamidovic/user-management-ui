@@ -23,7 +23,13 @@
             <a class="dropdown-item" (click)="sortUsersBy('status')">Status</a>
         </li>
     </ul>
-  </div>
+</div>
+
+<button class="button"
+        type="button"
+        routerLink="/add-user">
+        Add New User
+</button>
 
 <table class="styled-table">
     <thead>
@@ -44,7 +50,7 @@
             <td>
                 <button type="button" [routerLink]="['/edit-user', appUser.id]">Edit</button>
                 <button type="button" [routerLink]="['/assign-permission', appUser.id]">Assign</button>
-                <button type="button" (click)="openDeleteConfirmationModal(template, appUser.id)">Delete</button>
+                <button type="button" (click)="openDeleteConfirmationModal(template, appUser.id!!)">Delete</button>
             </td>
         </tr>
     </tbody>
