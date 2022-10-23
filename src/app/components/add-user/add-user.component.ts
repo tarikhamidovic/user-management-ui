@@ -56,7 +56,7 @@ export class AddUserComponent implements OnInit {
     );
   }
 
-  get inputFieldsValid() {
+  get inputFieldsNotValid() {
     return !this.addUserForm.value.firstName
       || !this.addUserForm.value.lastName
       || !this.addUserForm.value.email

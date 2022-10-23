@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AppUserPageRespone } from '../models/app-user-page-reponse.model';
 import { AppUser } from '../models/app-user.model';
 
@@ -13,7 +14,7 @@ export class UserService {
     private http: HttpClient
   ) { }
 
-  private baseUrl = 'http://localhost:8080/api/v1';
+  private baseUrl = environment.apiBaseUrl;
 
   getUsers(pageNumber: number, sortBy?: string): Observable<AppUserPageRespone> {
     const params = sortBy ?

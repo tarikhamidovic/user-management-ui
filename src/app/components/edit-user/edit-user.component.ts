@@ -67,7 +67,7 @@ export class EditUserComponent implements OnInit {
     );
   }
 
-  get inputFieldsValid() {
+  get inputFieldsNotValid() {
     return !this.editUserForm.value.firstName
       || !this.editUserForm.value.lastName
       || !this.editUserForm.value.email

@@ -1,0 +1,16 @@
+.permissions-form-container {
+    margin: 20px;
+    div {
+        display: flex;
+        font-family: Arial, Helvetica, sans-serif;
+        label {
+            margin-right: 5px;
+        }
+    }
+    .submit-button {
+        margin-top: 10px;
+    }
+    button {
+        margin-top: 10px;
+    }
+}

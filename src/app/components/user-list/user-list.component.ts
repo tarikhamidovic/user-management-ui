@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',
@@ -21,11 +22,15 @@ export class UserListComponent implements OnInit {
   sortBy: string = '';
   modalRef?: BsModalRef;
   userIdToDelete = -1;
+  filterUsersForm = this.formBuilder.group({
+    filterInput: ''
+  });
 
   constructor(
     private userService: UserService,
     private modalService: BsModalService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -56,6 +61,14 @@ export class UserListComponent implements OnInit {
   decline(): void {
     this.modalRef?.hide();
     this.userIdToDelete = -1;
+  }
+
+  onSubmit() {
+    console.log('subtmitted');
+  }
+
+  get inputFieldNotValid() {
+    return !this.filterUsersForm.value.filterInput;
   }
 
   private refreshUserList() {

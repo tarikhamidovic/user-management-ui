@@ -1,11 +1,18 @@
-<button type="button" routerLink="/">back</button>
+<h2>Edit Permissions</h2>
+<div class="back-button" routerLink="/">
+    <i class="material-icons">arrow_back</i><span>Go back</span>
+</div>
 
-<form [formGroup]="assignPermissionsForm" (ngSubmit)="onSubmit()">
-    <label for="code">Code</label>
-    <input id="code" name="code" type="checkbox" formControlName="code">
-
-    <label for="description">Description</label>
-    <input id="description" name="description" type="checkbox" formControlName="description">
-
-    <button class="button" type="submit">Save</button>
-</form>
+<div class="permissions-form-container">
+    <form [formGroup]="assignPermissionsForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="code">Code</label>
+            <input id="code" name="code" type="checkbox" formControlName="code">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input id="description" name="description" type="checkbox" formControlName="description">
+        </div>
+        <button class="button-primary" type="submit">Save</button>
+    </form>
+</div>

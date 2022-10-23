@@ -1,60 +1,75 @@
-<div class="btn-group" dropdown>
-    <button id="button-basic"
-            dropdownToggle
+<div class="top-options">
+    <div class="sorting-container">
+        <div class="btn-group" dropdown>
+            <button id="button-basic"
+                    dropdownToggle
+                    type="button"
+                    class="btn btn-primary dropdown-toggle">
+                    Sort by
+                    <span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic"
+                *dropdownMenu
+                class="dropdown-menu"
+                role="menu">
+                <li role="menuitem">
+                    <a class="dropdown-item" (click)="sortUsersBy('firstName')">First Name</a>
+                </li>
+                <li role="menuitem">
+                    <a class="dropdown-item" (click)="sortUsersBy('lastName')">Last Name</a>
+                </li>
+                <li role="menuitem">
+                    <a class="dropdown-item" (click)="sortUsersBy('email')">Email</a>
+                </li>
+                <li role="menuitem">
+                    <a class="dropdown-item" (click)="sortUsersBy('status')">Status</a>
+                </li>
+            </ul>
+        </div>
+
+        <form [formGroup]="filterUsersForm" (ngSubmit)="onSubmit()">
+            <div>
+                <input id="filterInput" type="text" formControlName="filterInput" placeholder="Search">
+            </div>
+        </form>
+    </div>
+
+    <button class="button-primary"
             type="button"
-            class="btn btn-primary dropdown-toggle">
-            Button dropdown
-            <span class="caret"></span>
+            routerLink="/add-user">
+            Add New User
     </button>
-    <ul id="dropdown-basic"
-        *dropdownMenu
-        class="dropdown-menu"
-        role="menu">
-        <li role="menuitem">
-            <a class="dropdown-item" (click)="sortUsersBy('firstName')">First Name</a>
-        </li>
-        <li role="menuitem">
-            <a class="dropdown-item" (click)="sortUsersBy('lastName')">Last Name</a>
-        </li>
-        <li role="menuitem">
-            <a class="dropdown-item" (click)="sortUsersBy('email')">Email</a>
-        </li>
-        <li role="menuitem">
-            <a class="dropdown-item" (click)="sortUsersBy('status')">Status</a>
-        </li>
-    </ul>
 </div>
 
-<button class="button"
-        type="button"
-        routerLink="/add-user">
-        Add New User
-</button>
-
-<table class="styled-table">
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let appUser of appUsers">
-            <td>{{ appUser.firstName }}</td>
-            <td>{{ appUser.lastName }}</td>
-            <td>{{ appUser.email }}</td>
-            <td>{{ appUser.status }}</td>
-            <td>
-                <button type="button" [routerLink]="['/edit-user', appUser.id]">Edit</button>
-                <button type="button" [routerLink]="['/assign-permission', appUser.id]">Assign</button>
-                <button type="button" (click)="openDeleteConfirmationModal(template, appUser.id!!)">Delete</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="table-container">
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Actions</th>
+                <th>Permissions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let appUser of appUsers">
+                <td>{{ appUser.firstName }}</td>
+                <td>{{ appUser.lastName }}</td>
+                <td>{{ appUser.email }}</td>
+                <td>{{ appUser.status }}</td>
+                <td>
+                    <i class="material-icons" [routerLink]="['/edit-user', appUser.id]">edit_square</i>
+                    <i class="material-icons" (click)="openDeleteConfirmationModal(template, appUser.id!!)">delete</i>
+                </td>
+                <td>
+                    <button class="button-primary" type="button" [routerLink]="['/assign-permission', appUser.id]">Assign</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <ng-template #template>
     <div class="modal-body text-center">
@@ -64,7 +79,9 @@
     </div>
 </ng-template>
 
-<pagination [itemsPerPage]="elementsPerPage"
-            [totalItems]="totalElements"
-            (pageChanged)="pageChanged($event)">
-</pagination>
+<div class="pagination-container">
+    <pagination [itemsPerPage]="elementsPerPage"
+                [totalItems]="totalElements"
+                (pageChanged)="pageChanged($event)">
+    </pagination>
+</div>
