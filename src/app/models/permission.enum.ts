@@ -1,4 +1,4 @@
 export enum Permission {
-    Code,
-    Description
+    Code = 'Code',
+    Description = 'Description'
 }

@@ -1,2 +1,11 @@
 <button type="button" routerLink="/">back</button>
-<p>assign-permission works!</p>
+
+<form [formGroup]="assignPermissionsForm" (ngSubmit)="onSubmit()">
+    <label for="code">Code</label>
+    <input id="code" name="code" type="checkbox" formControlName="code">
+
+    <label for="description">Description</label>
+    <input id="description" name="description" type="checkbox" formControlName="description">
+
+    <button class="button" type="submit">Save</button>
+</form>
