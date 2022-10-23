@@ -1,0 +1,64 @@
+<div class="btn-group" dropdown>
+    <button id="button-basic"
+            dropdownToggle
+            type="button"
+            class="btn btn-primary dropdown-toggle">
+            Button dropdown
+            <span class="caret"></span>
+    </button>
+    <ul id="dropdown-basic"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu">
+        <li role="menuitem">
+            <a class="dropdown-item" (click)="sortUsersBy('firstName')">First Name</a>
+        </li>
+        <li role="menuitem">
+            <a class="dropdown-item" (click)="sortUsersBy('lastName')">Last Name</a>
+        </li>
+        <li role="menuitem">
+            <a class="dropdown-item" (click)="sortUsersBy('email')">Email</a>
+        </li>
+        <li role="menuitem">
+            <a class="dropdown-item" (click)="sortUsersBy('status')">Status</a>
+        </li>
+    </ul>
+  </div>
+
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let appUser of appUsers">
+            <td>{{ appUser.firstName }}</td>
+            <td>{{ appUser.lastName }}</td>
+            <td>{{ appUser.email }}</td>
+            <td>{{ appUser.status }}</td>
+            <td>
+                <button type="button" [routerLink]="['/edit-user', appUser.id]">Edit</button>
+                <button type="button" [routerLink]="['/assign-permission', appUser.id]">Assign</button>
+                <button type="button" (click)="openDeleteConfirmationModal(template, appUser.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #template>
+    <div class="modal-body text-center">
+        <p>Are you sure you want to delete this user?</p>
+        <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+    </div>
+</ng-template>
+
+<pagination [itemsPerPage]="elementsPerPage"
+            [totalItems]="totalElements"
+            (pageChanged)="pageChanged($event)">
+</pagination>
