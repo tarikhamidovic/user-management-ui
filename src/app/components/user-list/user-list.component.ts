@@ -64,7 +64,12 @@ export class UserListComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('subtmitted');
+    const filterString = this.filterUsersForm.value.filterInput;
+    if (!filterString) {
+      return;
+    }
+
+    console.log('this should filter users by attribute...');
   }
 
   get inputFieldNotValid() {
